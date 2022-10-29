@@ -10,7 +10,7 @@
         "jsx": "preserve",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "outDir": "lib"
+        "outDir": "exp/lib"
     },
     "exclude": ["node_modules"]
 }

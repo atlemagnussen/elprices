@@ -1,25 +1,25 @@
-interface Price {
+export interface Price {
     total: number
     energy: number
     tax: number
     startsAt: Date
 }
 
-interface PriceInfo {
+export interface PriceInfo {
     current: Price,
     today: Price[],
     tomorrow: Price[]
 }
 
-interface Subscription {
+export interface Subscription {
     priceInfo: PriceInfo
 }
 
-interface Home {
+export interface Home {
     currentSubscription: Subscription
 }
 
-interface Viewer {
+export interface Viewer {
     homes: Home[]
 }
 
