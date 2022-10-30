@@ -28,8 +28,8 @@
         justify-content: center;
         align-items: center;
         gap: 0.5rem;
-        height: 8rem;
-        width: 8rem;
+        height: 90vw;
+        width: 90vw;
         
         border-radius: 50%;
         /* background: var(--digilean-primary-button);
