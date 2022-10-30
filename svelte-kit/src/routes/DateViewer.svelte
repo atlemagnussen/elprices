@@ -17,7 +17,17 @@
 
     $: format(startDate)
 </script>
+
 <div>
     <span>{dateOnlyFormatted}</span><br>
-    <span>{startTimeFormatted} - {endTimeFormatted}</span>
+    <span class="time">{startTimeFormatted} - {endTimeFormatted}</span>
 </div>
+
+<style>
+    div {
+        
+    }
+    .time {
+        font-size: 0.8rem;
+    }
+</style>

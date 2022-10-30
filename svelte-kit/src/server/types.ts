@@ -1,4 +1,5 @@
 export enum Level {
+    Cheap = "CHEAP",
     Normal = "NORMAL",
     Expensive = "EXPENSIVE",
     VeryExpensive = "VERY_EXPENSIVE"
