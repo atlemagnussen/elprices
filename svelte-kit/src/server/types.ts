@@ -1,8 +1,15 @@
+export enum Level {
+    Normal = "NORMAL",
+    Expensive = "EXPENSIVE",
+    VeryExpensive = "VERY_EXPENSIVE"
+}
 export interface Price {
     total: number
     energy: number
     tax: number
-    startsAt: Date
+    startsAt: string
+    level: Level,
+    currency: string
 }
 
 export interface PriceInfo {
