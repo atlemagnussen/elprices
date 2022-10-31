@@ -11,26 +11,28 @@
     $: format(price)
 </script>
 <div>
-    <span class="{level}">
+    <span class="price {level}">
         {Math.round(price.total*100)} øre
     </span>
     <DateViewer startDate={price.startsAt} />
 </div>
 <style>
-    span {
+    span.price {
         display: inline-block;
-        font-size: 1.2rem;
+        font-size: 4vmin;
     }
     div {
-        display: inline-flex;
+        display: flex;
+        aspect-ratio: 1/1;
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         gap: 0.5rem;
-        height: 90vw;
-        width: 90vw;
-        
+        height: 20%;
+        width: 20%;
+        max-height: 20vmin;
+        max-width: 20vmin;
         border-radius: 50%;
         /* background: var(--digilean-primary-button);
         color: var(--digilean-main-menu-text); */
@@ -39,16 +41,16 @@
         
         border: 2px solid var(--cyan-dark);
     }
-    .cheap {
+    .price.cheap {
         color: var(--un-green);
     }
-    .normal {
+    .price.normal {
         color: var(--color-theme-2);
     }
-    .expensive {
+    .price.expensive {
         color: var(--pink-mild);
     }
-    .very_expensive {
+    .price.very_expensive {
         color: var(--color-theme-1);
     }
 </style>

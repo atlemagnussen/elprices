@@ -1,7 +1,9 @@
 <script lang="ts">
     import type { PageData } from "./$types"
     import CurrentPrice from "../CurrentPrice.svelte"
+    import ChartPrices from "../ChartPrices.svelte"
     export let data: PageData
+    
 </script>
 
 <svelte:head>
@@ -10,11 +12,17 @@
 </svelte:head>
 
 <div class="center-things">
-    <CurrentPrice price={data.price} />
+    <CurrentPrice price={data.prices.current} />
+    <ChartPrices prices={data.prices.today} />
 </div>
 
 <style>
+
     .center-things {
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 3vmin;
     }
 </style>

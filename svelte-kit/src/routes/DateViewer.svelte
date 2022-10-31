@@ -28,6 +28,6 @@
         
     }
     .time {
-        font-size: 0.8rem;
+        font-size: 3vmin;
     }
 </style>

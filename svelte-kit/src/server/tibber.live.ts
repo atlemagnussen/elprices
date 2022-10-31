@@ -68,7 +68,7 @@ export const getCurrentPriceLive = async () => {
     const data = await getFileFromHttp(url, options, query)
     const json = JSON.parse(data)
     const d = json.data.viewer as Viewer
-    const current = d.homes[0].currentSubscription.priceInfo.current
-    console.log("current", current)
+    const current = d.homes[0].currentSubscription.priceInfo
+    
     return current
 }
