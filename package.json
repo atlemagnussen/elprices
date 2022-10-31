@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "el prices tibber graphql",
   "main": "index.js",
-  "engines": {
-    "node": ">=18"
-  },
   "scripts": {
     "start": "npm run build && node ./lib/index.js",
     "build": "tsc"
