@@ -48,7 +48,7 @@
 <div class="chart">
     <svg viewBox="0 0 {width} {height}">
         {#each chart.data as price}
-            <circle r="3" 
+            <circle r="6" 
                 cx={chart.xScale(new Date(price.startsAt))} 
                 cy={chart.yScale(price.total)} fill="red" />
         {/each}
@@ -56,7 +56,7 @@
         <g transform={`translate(0 ${height-10})`}>
             <line x1="0" x2={width} stroke="white"></line>
         </g>
-        {#each chart.xScale.ticks() as tick}
+        {#each chart.xScale.ticks(5) as tick}
             <g transform={`translate(${chart.xScale(tick)} ${height-buffer})`}>
                 <line y1="-10" y2="-5" stroke="white" />
                 <text y="10" text-anchor="middle" fill="white">{new Date(tick).getHours()}</text>
@@ -76,7 +76,7 @@
 </div>
 <style>
 	.chart {
-        font-size: 4vmin;
+        font-size: 8vmin;
 	}
     .chart, svg {
         height: 100%;
