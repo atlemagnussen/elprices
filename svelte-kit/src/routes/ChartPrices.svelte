@@ -69,14 +69,14 @@
         {#each chart.yScale.ticks(5) as tick}
             <g transform={`translate(${buffer} ${chart.yScale(tick)})`}>
                 <line x1="20" x2="25" stroke="white" />
-                <text x="15" dominant-baseline="middle" text-anchor="end" fill="white">{tick*100}</text>
+                <text x="15" dominant-baseline="middle" text-anchor="end" fill="white">{tick}</text>
             </g>
         {/each}
     </svg>
 </div>
 <style>
 	.chart {
-        font-size: 1.5vmin;
+        font-size: 4vmin;
 	}
     .chart, svg {
         height: 100%;
