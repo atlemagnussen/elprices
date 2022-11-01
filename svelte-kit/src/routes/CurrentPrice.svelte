@@ -19,7 +19,7 @@
 <style>
     span.price {
         display: inline-block;
-        font-size: 4vmin;
+        font-size: 10vmin;
     }
     div {
         display: flex;
@@ -29,10 +29,10 @@
         justify-content: center;
         align-items: center;
         gap: 0.5rem;
-        height: 20%;
-        width: 20%;
-        max-height: 20vmin;
-        max-width: 20vmin;
+        height: 100%;
+        width: 100%;
+        max-height: 100vmin;
+        max-width: 100vmin;
         border-radius: 50%;
         /* background: var(--digilean-primary-button);
         color: var(--digilean-main-menu-text); */

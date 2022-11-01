@@ -25,9 +25,9 @@
 
 <style>
     div {
-        
+        font-size: 10vmin;
     }
     .time {
-        font-size: 3vmin;
+        font-size: 8vmin;
     }
 </style>

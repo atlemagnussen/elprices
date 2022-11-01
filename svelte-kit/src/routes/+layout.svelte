@@ -2,19 +2,14 @@
 	import './styles.css'
 </script>
 
-<div class="app">
-
-	<main>
-		<slot />
-	</main>
-
-</div>
+<main class="app">
+	<slot />
+</main>
 
 <style>
-	.app {
+	main.app {
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
-		margin-top: 5vw;
 	}
 </style>

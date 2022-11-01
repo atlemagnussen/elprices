@@ -15,7 +15,6 @@
 
     
     let calc = (ps: Price[]) => {
-        console.log(ps)
         chart = format()
     }
 
@@ -27,9 +26,10 @@
         let xScale = scaleLinear().domain(xExtent).range([buffer + axisSpace, width-buffer])
         let yScale = scaleLinear().domain(yExtent).range([height-buffer-axisSpace, buffer])
 
-
         let yTicks = yScale.ticks()
-        console.log(yTicks)
+        console.log("yTicks", yTicks)
+        let xTicks = xScale.ticks()
+        console.log("xTicks", xTicks)
         return {
             data: prices,
             xExtent,
@@ -46,13 +46,16 @@
 
 </script>
 <div class="chart">
-    <svg {width} {height}>
+    <svg viewBox="0 0 {width} {height}">
         {#each chart.data as price}
             <circle r="3" 
                 cx={chart.xScale(new Date(price.startsAt))} 
                 cy={chart.yScale(price.total)} fill="red" />
         {/each}
 
+        <g transform={`translate(0 ${height-10})`}>
+            <line x1="0" x2={width} stroke="white"></line>
+        </g>
         {#each chart.xScale.ticks() as tick}
             <g transform={`translate(${chart.xScale(tick)} ${height-buffer})`}>
                 <line y1="-10" y2="-5" stroke="white" />
@@ -60,6 +63,9 @@
             </g>
         {/each}
 
+        <g transform="translate(30 0)">
+            <line y1="0" y2={height} stroke="white"></line>
+        </g>
         {#each chart.yScale.ticks(5) as tick}
             <g transform={`translate(${buffer} ${chart.yScale(tick)})`}>
                 <line x1="20" x2="25" stroke="white" />
@@ -70,12 +76,11 @@
 </div>
 <style>
 	.chart {
-		height: 450px;
-		padding: 3em 0 2em 2em;
-		margin: 0 0 36px 0;
-		max-width: 80em;
-		margin: 0 auto;
         font-size: 1.5vmin;
 	}
+    .chart, svg {
+        height: 100%;
+        width: 100%;
+    }   
 
 </style>
