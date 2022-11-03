@@ -27,9 +27,8 @@
         let yScale = scaleLinear().domain(yExtent).range([height-buffer-axisSpace, buffer])
 
         let yTicks = yScale.ticks()
-        console.log("yTicks", yTicks)
         let xTicks = xScale.ticks()
-        console.log("xTicks", xTicks)
+
         return {
             data: prices,
             xExtent,
@@ -82,5 +81,4 @@
         height: 100%;
         width: 100%;
     }   
-
 </style>
