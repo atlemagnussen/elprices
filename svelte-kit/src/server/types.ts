@@ -1,3 +1,4 @@
+import type { Axis, NumberValue, ScaleTime } from "d3"
 import type { ScaleLinear } from "d3-scale"
 
 export enum Level {
@@ -37,7 +38,9 @@ export interface PriceChart {
     data: Price[]
     xExtent: [Date, Date]
     yExtent: [number, number]
-    xScale: ScaleLinear<number, number, never>
+    xScale: ScaleTime<number, number, never>
     yScale: ScaleLinear<number, number, never>
+    xAxis: Axis<Date | NumberValue>
+    yAxis: Axis<NumberValue>
     line: string | null
 }

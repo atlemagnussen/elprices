@@ -1,12 +1,11 @@
 <script lang="ts">
     //import { onMount } from "svelte"
-    import { scaleLinear } from "d3-scale"
-    import { line as d3Line } from "d3"
+    import { scaleLinear, scaleTime } from "d3-scale"
+    import { line as d3Line, axisBottom, axisLeft, select } from "d3"
     import { extent, ticks } from "d3-array"
     import type { Price, PriceChart } from "../server/types"
-    //import * as Pancake from "@sveltejs/pancake"
 
-    //let svgEl: SVGElement | null = null
+    let svgEl: SVGElement | null = null
     const height = 500
     const width = 500
     const buffer = 10
@@ -25,17 +24,17 @@
         let yFunc = (d: Price) => d.total
 
         let xExtent = extent(prices, xFunc) as [Date, Date]
-        let yExtent = extent(prices,yFunc) as [number, number]
+        let yExtent = extent(prices, yFunc) as [number, number]
         
-        let xScale = scaleLinear().domain(xExtent).range([buffer + axisSpace, width-buffer])
+        let xScale = scaleTime().domain(xExtent).range([buffer + axisSpace, width-buffer])
         let yScale = scaleLinear().domain(yExtent).range([height-buffer-axisSpace, buffer])
 
-        let yTicks = yScale.ticks()
-        let xTicks = xScale.ticks()
+        let xAxis = axisBottom(xScale)
+        let yAxis = axisLeft(yScale)
 
-        const lineFunc = d3Line().x(xFunc).y(yFunc)
+        const lineFunc = d3Line<Price>().x(d => xScale(new Date(d.startsAt))).y(d => yScale(d.total))
         const line = lineFunc(prices)
-        console.log(line)
+        
 
         return {
             data: prices,
@@ -43,6 +42,8 @@
             yExtent,
             xScale,
             yScale,
+            xAxis,
+            yAxis,
             line
         }
     }
@@ -54,7 +55,7 @@
 
 </script>
 <div class="chart">
-    <svg viewBox="0 0 {width} {height}">
+    <svg viewBox="0 0 {width} {height}" bind:this={svgEl}>
         <g>
             {#each chart.data as price}
                 <circle r="6" 
@@ -62,11 +63,11 @@
                     cy={chart.yScale(price.total)} fill="red" />
             {/each}
         </g>
-        <g translate="transform(50,50)">
-        <path d={chart.line}></path>
+        <g transform={`translate(${buffer} 0)`}>
+            <path d={chart.line} stroke="white" stroke-width="2px" fill="none"></path>
         </g>
         <g transform={`translate(0 ${height-10})`}>
-            <line x1="0" x2={width} stroke="white"></line>
+            <line x1="0" x2={width}></line>
         </g>
         {#each chart.xScale.ticks(5) as tick}
             <g transform={`translate(${chart.xScale(tick)} ${height-buffer})`}>
