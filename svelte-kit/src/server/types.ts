@@ -39,4 +39,5 @@ export interface PriceChart {
     yExtent: [number, number]
     xScale: ScaleLinear<number, number, never>
     yScale: ScaleLinear<number, number, never>
+    line: string | null
 }

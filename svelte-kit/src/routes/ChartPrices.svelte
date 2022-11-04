@@ -1,6 +1,7 @@
 <script lang="ts">
     //import { onMount } from "svelte"
     import { scaleLinear } from "d3-scale"
+    import { line as d3Line } from "d3"
     import { extent, ticks } from "d3-array"
     import type { Price, PriceChart } from "../server/types"
     //import * as Pancake from "@sveltejs/pancake"
@@ -20,8 +21,11 @@
 
     let format = (): PriceChart => {
         
-        let xExtent = extent(prices, d => new Date(d.startsAt)) as [Date, Date]
-        let yExtent = extent(prices, d => d.total) as [number, number]
+        let xFunc = (d: Price) => new Date(d.startsAt)
+        let yFunc = (d: Price) => d.total
+
+        let xExtent = extent(prices, xFunc) as [Date, Date]
+        let yExtent = extent(prices,yFunc) as [number, number]
         
         let xScale = scaleLinear().domain(xExtent).range([buffer + axisSpace, width-buffer])
         let yScale = scaleLinear().domain(yExtent).range([height-buffer-axisSpace, buffer])
@@ -29,12 +33,17 @@
         let yTicks = yScale.ticks()
         let xTicks = xScale.ticks()
 
+        const lineFunc = d3Line().x(xFunc).y(yFunc)
+        const line = lineFunc(prices)
+        console.log(line)
+
         return {
             data: prices,
             xExtent,
             yExtent,
             xScale,
-            yScale
+            yScale,
+            line
         }
     }
 
@@ -46,12 +55,16 @@
 </script>
 <div class="chart">
     <svg viewBox="0 0 {width} {height}">
-        {#each chart.data as price}
-            <circle r="6" 
-                cx={chart.xScale(new Date(price.startsAt))} 
-                cy={chart.yScale(price.total)} fill="red" />
-        {/each}
-
+        <g>
+            {#each chart.data as price}
+                <circle r="6" 
+                    cx={chart.xScale(new Date(price.startsAt))} 
+                    cy={chart.yScale(price.total)} fill="red" />
+            {/each}
+        </g>
+        <g translate="transform(50,50)">
+        <path d={chart.line}></path>
+        </g>
         <g transform={`translate(0 ${height-10})`}>
             <line x1="0" x2={width} stroke="white"></line>
         </g>
