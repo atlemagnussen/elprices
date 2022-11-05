@@ -17,7 +17,7 @@
         <CurrentPrice price={data.prices.current} />
     </div>
 
-    <div class="container">
+    <div class="container padding2">
         <ChartPrices prices={data.prices.today} />
     </div>
     
@@ -49,5 +49,8 @@
     }
     .padding {
         padding: 5px;
+    }
+    .padding2 {
+        padding: 10px;
     }
 </style>
