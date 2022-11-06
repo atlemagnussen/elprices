@@ -74,7 +74,8 @@
                 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
                 <circle r="6" on:mouseover={() => showTooltip(price)}
                     cx={chart.xScale(new Date(price.startsAt))} 
-                    cy={chart.yScale(price.total)} fill="white">
+                    cy={chart.yScale(price.total)} fill="white"
+                    class={price.level.toLowerCase()}>
                     <title>{price.total}"</title>
                 </circle>
             {/each}
@@ -129,5 +130,17 @@
         width: 200px;
         height: 100px;
         z-index: 10;
+    }
+    circle.cheap {
+        fill: var(--un-green);
+    }
+    circle.normal {
+        fill: var(--color-theme-2);
+    }
+    circle.expensive {
+        fill: var(--pink-mild);
+    }
+    circle.very_expensive {
+        fill: var(--color-theme-1);
     }
 </style>
