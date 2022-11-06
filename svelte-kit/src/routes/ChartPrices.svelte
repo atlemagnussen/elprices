@@ -78,7 +78,7 @@
         <g>
             {#each chart.data as price}
                 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-                <circle r="7" on:mouseover={() => showTooltip(price)}
+                <circle r="9" on:mouseover={() => showTooltip(price)}
                     cx={chart.xScale(new Date(price.startsAt))} 
                     cy={chart.yScale(price.total)} fill="white"
                     class={price.level.toLowerCase()}>
