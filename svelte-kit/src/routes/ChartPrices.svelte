@@ -18,7 +18,11 @@
         tooltipEl.style.display = "block"
     }
 
-    
+    let hour24 = new Date()
+    hour24.setHours(23)
+    hour24.setMinutes(59)
+    hour24.setSeconds(59)
+
     const height = 500
     const width = 500
     const buffer = 10
@@ -96,7 +100,9 @@
                 <text y="10" text-anchor="middle" fill="white">{new Date(tick).getHours()}</text>
             </g>
         {/each}
-
+        <g transform={`translate(${chart.xScale(hour24)} ${height-buffer})`}>
+            <line y1="0" y2="-500" stroke="grey" stroke-width="1px" />
+        </g>
         <!-- Y_AXIS -->
         <!-- <g transform="translate(30 0)">
             <line y1="0" y2={height} stroke="white"></line>
