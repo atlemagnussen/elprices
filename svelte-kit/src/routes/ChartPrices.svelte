@@ -14,8 +14,10 @@
         let p = `${Math.round(price.total*100)} øre`
         let time = formatTimeOnly(price.startsAt)
         let text = `${p}<br>${time}`
-        tooltipEl.innerHTML = `<span>${text}</span>`
-        tooltipEl.style.display = "block"
+        tooltipEl.innerHTML = `<span class="price ${price.level.toLowerCase()}">
+                ${text}
+            </span>`
+        tooltipEl.style.display = "inline-flex"
     }
 
     let hour24 = new Date()
@@ -76,7 +78,7 @@
         <g>
             {#each chart.data as price}
                 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-                <circle r="6" on:mouseover={() => showTooltip(price)}
+                <circle r="7" on:mouseover={() => showTooltip(price)}
                     cx={chart.xScale(new Date(price.startsAt))} 
                     cy={chart.yScale(price.total)} fill="white"
                     class={price.level.toLowerCase()}>
@@ -126,27 +128,21 @@
         width: 100%;
     }
     #tooltip {
-        background: var(--pink-mild);
-        border: 2px solid white;
-        border-radius: 8px;
         display: none;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid white;
+        background: var(--color-bg-1);
+        border-radius: 8px;
+        
         position: absolute;
         top: 200px;
         left: 200px;
-        width: 200px;
+        width: 150px;
         height: 100px;
         z-index: 10;
     }
-    circle.cheap {
-        fill: var(--un-green);
-    }
-    circle.normal {
-        fill: var(--color-theme-2);
-    }
-    circle.expensive {
-        fill: var(--pink-mild);
-    }
-    circle.very_expensive {
-        fill: var(--color-theme-1);
-    }
+    
 </style>

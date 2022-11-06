@@ -14,6 +14,7 @@
 	--cyan-dark: rgb(0, 139, 139);
 	--un-red: rgba(161, 15, 15, 0.685);
     --un-green: rgb(23, 160, 80);
+	--fine-green: rgb(97, 223, 18);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);
@@ -32,4 +33,35 @@ body {
 }
 * {
 	box-sizing: border-box;
+}
+.price.very_cheap {
+	color: var(--fine-green);
+}
+.price.cheap {
+	color: var(--un-green);
+}
+.price.normal {
+	color: var(--color-theme-2);
+}
+.price.expensive {
+	color: var(--pink-mild);
+}
+.price.very_expensive {
+	color: var(--color-theme-1);
+}
+
+circle.very_cheap {
+	fill: var(--fine-green);
+}
+circle.cheap {
+	fill: var(--un-green);
+}
+circle.normal {
+	fill: var(--color-theme-2);
+}
+circle.expensive {
+	fill: var(--pink-mild);
+}
+circle.very_expensive {
+	fill: var(--color-theme-1);
 }

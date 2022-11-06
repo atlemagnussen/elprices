@@ -41,16 +41,4 @@
         
         border: 2px solid var(--cyan-dark);
     }
-    .price.cheap {
-        color: var(--un-green);
-    }
-    .price.normal {
-        color: var(--color-theme-2);
-    }
-    .price.expensive {
-        color: var(--pink-mild);
-    }
-    .price.very_expensive {
-        color: var(--color-theme-1);
-    }
 </style>

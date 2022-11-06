@@ -16,7 +16,6 @@ for (let i = 0; i<24; i++) {
     date.setMilliseconds(0)
 
     const dateStr = date.toISOString()
-    console.log(dateStr)
     times.push(dateStr)
 }
 
@@ -35,20 +34,20 @@ const example: Viewer = {
                     },
                     "today": [
                         {
-                            "total": 1.2972,
-                            "energy": 1.0298,
+                            "total": 0.2972,
+                            "energy": 0.0298,
                             "tax": 0.2674,
                             "startsAt": times[0],
                             "currency": "NOK",
-                            "level": Level.Normal
+                            "level": Level.Cheap
                         },
                         {
-                            "total": 1.2703,
-                            "energy": 1.0082,
+                            "total": 0.2703,
+                            "energy": 0.0082,
                             "tax": 0.2621,
                             "startsAt": times[1],
                             "currency": "NOK",
-                            "level": Level.Normal
+                            "level": Level.VeryCheap
                         },
                         {
                             "total": 1.2669,

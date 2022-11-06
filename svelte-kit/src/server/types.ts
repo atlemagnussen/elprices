@@ -1,7 +1,9 @@
 import type { Axis, NumberValue, ScaleTime } from "d3"
 import type { ScaleLinear } from "d3-scale"
 
+/// https://developer.tibber.com/docs/reference#pricelevel
 export enum Level {
+    VeryCheap = "VERY_CHEAP",
     Cheap = "CHEAP",
     Normal = "NORMAL",
     Expensive = "EXPENSIVE",
