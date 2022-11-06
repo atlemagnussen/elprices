@@ -7,8 +7,8 @@
     import { formatTimeOnly } from "../client/dateTimeFormatting"
 
     let tooltipEl: HTMLElement | null = null
-    let showTooltip = (price: Price) => {
-        console.log("showTooltip")
+    let showTooltip = (price: Price, e: MouseEvent) => {
+        console.log("showTooltip", e)
         if (!tooltipEl) return
 
         let p = `${Math.round(price.total*100)} øre`
@@ -18,6 +18,12 @@
                 ${text}
             </span>`
         tooltipEl.style.display = "inline-flex"
+        tooltipEl.style.left = `${e.offsetX}px`
+        tooltipEl.style.top = `${e.offsetY}px`
+    }
+    let hideTooltip = () => {
+        if (!tooltipEl) return
+        tooltipEl.style.display = "none"
     }
 
     let hour24 = new Date()
@@ -78,11 +84,12 @@
         <g>
             {#each chart.data as price}
                 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-                <circle r="9" on:mouseover={() => showTooltip(price)}
+                <circle r="9" on:mouseover={(e) => showTooltip(price, e)}
+                    on:mouseleave={() => hideTooltip()}
                     cx={chart.xScale(new Date(price.startsAt))} 
                     cy={chart.yScale(price.total)} fill="white"
-                    class={price.level.toLowerCase()}>
-                    <title>{price.total}"</title>
+                    class="price {price.level.toLowerCase()}"
+                    >
                 </circle>
             {/each}
         </g>
@@ -138,8 +145,8 @@
         border-radius: 8px;
         
         position: absolute;
-        top: 200px;
-        left: 200px;
+        /* top: 200px;
+        left: 200px; */
         width: 150px;
         height: 100px;
         z-index: 10;
