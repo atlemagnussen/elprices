@@ -104,14 +104,14 @@
             <g transform={`translate(${buffer} ${chart.yScale(tick)})`}>
                 <line x1="0" x2="500" stroke="grey" stroke-width="1px" />
                 <line x1="20" x2="25" stroke="white" />
-                <text x="15" dominant-baseline="middle" text-anchor="end" fill="white">{tick}</text>
+                <text x="15" dominant-baseline="middle" text-anchor="end" fill="white">{tick*100}</text>
             </g>
         {/each}
     </svg>
 </div>
 <style>
 	.chart {
-        font-size: 8vmin;
+        font-size: 2rem;
         position: relative;
 	}
     .chart, svg {
@@ -119,7 +119,6 @@
         width: 100%;
     }
     #tooltip {
-        font-size: 6vmin;
         background: var(--pink-mild);
         border: 2px solid white;
         border-radius: 8px;
