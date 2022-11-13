@@ -129,7 +129,7 @@
             <g transform={`translate(${buffer} ${chart.yScale(tick)})`}>
                 <line x1="0" x2="500" stroke="grey" stroke-width="1px" />
                 <line x1="20" x2="25" stroke="white" />
-                <text x="15" dominant-baseline="middle" text-anchor="end" fill="white">{tick*100}</text>
+                <text x="15" dominant-baseline="middle" text-anchor="end" fill="white">{Math.round(tick*100)}</text>
             </g>
         {/each}
     </svg>
