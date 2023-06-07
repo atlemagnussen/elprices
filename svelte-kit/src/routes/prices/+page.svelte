@@ -4,6 +4,10 @@
     import ChartPrices from "../ChartPrices.svelte"
     export let data: PageData
     
+    let showTomorrow = false
+    function toggleTomorrow() {
+        showTomorrow = !showTomorrow
+    }
 </script>
 
 <svelte:head>
@@ -17,8 +21,14 @@
         <CurrentPrice price={data.prices.current} />
     </div>
 
+    <button on:click={toggleTomorrow} class="{showTomorrow ? "tomorrow": ""}">Tomorrow</button>
+
     <div class="container padding2">
-        <ChartPrices prices={data.prices.today} />
+        {#if showTomorrow}
+            <ChartPrices prices={data.prices.tomorrow} />
+        {:else}
+            <ChartPrices prices={data.prices.today} />
+        {/if}
     </div>
     
 </div>
@@ -52,5 +62,16 @@
     }
     .padding2 {
         padding: 10px;
+    }
+
+    button {
+        background: transparent;
+        color: white;
+        margin-bottom: -40px;
+        z-index: 100;
+    }
+    button.tomorrow {
+        background-color: aqua;
+        color: black;
     }
 </style>
